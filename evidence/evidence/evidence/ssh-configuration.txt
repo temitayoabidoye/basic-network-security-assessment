@@ -1,0 +1,61 @@
+BASIC NETWORK SECURITY ASSESSMENT
+Evidence: SSH Configuration Review
+
+SSH Service Status:
+Command: systemctl status ssh --no-pager
+
+Result:
+Active: active (running)
+
+SSH Listening Addresses:
+Command: sudo ss -tulnp
+
+Observed:
+0.0.0.0:22
+[::]:22
+
+SSH Configuration Checks:
+
+1. Root Login
+Command: sudo sshd -T | grep permitrootlogin
+
+Result:
+permitrootlogin without-password
+
+Interpretation:
+Root password-based SSH login is restricted.
+
+2. Password Authentication
+Command: sudo sshd -T | grep passwordauthentication
+
+Result:
+passwordauthentication yes
+
+Interpretation:
+Password-based SSH authentication is enabled.
+
+3. Empty Passwords
+Command: sudo sshd -T | grep permitemptypasswords
+
+Result:
+permitemptypasswords no
+
+Interpretation:
+SSH does not permit empty passwords.
+
+4. Maximum Authentication Attempts
+Command: sudo sshd -T | grep maxauthtries
+
+Result:
+maxauthtries 6
+
+Interpretation:
+The configured maximum authentication attempts value is six.
+
+Security Assessment:
+Password authentication being enabled may increase exposure to password-guessing attacks if the SSH service is reachable by an attacker.
+
+SSH listening on wildcard IPv4 and IPv6 addresses means the service listens across available interfaces. This does not independently establish public internet exposure.
+
+Recommendation:
+Use securely configured SSH keys, consider disabling password authentication after testing key-based access, restrict SSH access to trusted sources, and monitor authentication logs.
