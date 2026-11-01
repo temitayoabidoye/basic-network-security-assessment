@@ -92,12 +92,12 @@ This finding does not by itself prove that the system is publicly exposed or tha
 
 Key Findings
 
-Finding| Risk
-SSH password authentication enabled| Medium–High
-No restrictive INPUT rules observed in inspected iptables chain| Medium
-SSH exposed on wildcard interfaces| Medium
-Root password-based SSH login restricted| Positive control
-Empty SSH passwords disabled| Positive control
+Finding| Risk Level
+SSH password authentication is enabled| Medium–High
+No restrictive rules were observed in the inspected iptables INPUT chain| Medium
+SSH listens on wildcard IPv4 and IPv6 interfaces| Medium
+Root password-based SSH login is restricted| Positive control
+Empty SSH passwords are disabled| Positive control
 
 Recommendations
 
