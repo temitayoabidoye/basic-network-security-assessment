@@ -1,0 +1,44 @@
+BASIC NETWORK SECURITY ASSESSMENT
+Evidence: Nmap Port Scanning Results
+
+Target 1: Localhost
+Command: nmap 127.0.0.1
+
+Result:
+Host is up.
+999 TCP ports closed.
+Port 22/tcp open — SSH.
+
+Target 2: Service and Version Detection
+Command: nmap -sV 127.0.0.1
+
+Result:
+Port 22/tcp open — OpenSSH 9.3p2 Debian 1.
+Protocol: SSH (protocol 2.0).
+Service information identified Linux as the operating system.
+
+Target 3: Full TCP Port Scan
+Command: nmap -p- 127.0.0.1
+
+Result:
+65,534 TCP ports closed.
+Port 22/tcp open — SSH.
+
+Target 4: Top 20 UDP Ports
+Command: sudo nmap -sU --top-ports 20 127.0.0.1
+
+Result:
+All 20 UDP ports tested were closed.
+
+Target 5: SSH Network Interface Reachability
+Command: nmap -p 22 10.0.2.15
+
+Result:
+Port 22/tcp open.
+
+Assessment Notes:
+- TCP port 22 was the only open TCP port identified in the scans.
+- The top 20 UDP ports tested were closed. This was not a full UDP port scan.
+- OpenSSH version identification does not, by itself, confirm a vulnerability.
+- The scan of 10.0.2.15 confirmed SSH reachability through the Kali VM's network interface within the lab environment.
+- These results do not establish public internet exposure.
