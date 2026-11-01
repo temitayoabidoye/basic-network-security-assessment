@@ -1,0 +1,42 @@
+BASIC NETWORK SECURITY ASSESSMENT
+Evidence: Firewall Configuration Review
+
+1. UFW Availability
+Command: sudo ufw status verbose
+
+Result:
+Command not found.
+
+Interpretation:
+The UFW command-line utility was unavailable. This does not establish that the system has no firewall.
+
+2. nftables Inspection
+Command: sudo nft list ruleset
+
+Observation:
+The environment indicated that firewall rules were managed through the iptables-nft compatibility layer.
+
+Interpretation:
+The rules should not be modified directly through nftables without understanding the existing management configuration.
+
+3. iptables Inspection
+Command: sudo iptables -S INPUT
+
+Result:
+-P INPUT ACCEPT
+
+Command: sudo iptables -L INPUT -n -v --line-numbers
+
+Result:
+No individual INPUT rules were listed.
+
+Security Assessment:
+The inspected iptables INPUT chain had a default ACCEPT policy and no individual rules were listed.
+
+This indicates that restrictive inbound rules were not observed in the inspected chain. It does not prove that no other firewall or network-level security controls exist.
+
+Recommendation:
+Review the complete firewall configuration and implement a restrictive inbound policy where appropriate. Explicitly allow only required services and restrict administrative access.
+
+Safety Note:
+No firewall configuration changes were made during this assessment.
