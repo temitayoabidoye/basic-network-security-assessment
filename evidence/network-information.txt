@@ -1,0 +1,23 @@
+BASIC NETWORK SECURITY ASSESSMENT
+Evidence: Network Information
+
+Primary Network Interface:
+eth0
+
+IPv4 Address:
+10.0.2.15/24
+
+Default Gateway:
+10.0.2.2
+
+Gateway Connectivity Test:
+ping -c 4 10.0.2.2
+
+Result:
+4 packets transmitted, 4 packets received, 0% packet loss.
+
+Neighbor Discovery:
+10.0.2.2 dev eth0
+
+Assessment Note:
+The Kali Linux virtual machine was operating in a VirtualBox lab environment. The network configuration is consistent with a NAT-style virtual network. This evidence represents the assessed Kali VM and does not establish exposure to the public internet.
