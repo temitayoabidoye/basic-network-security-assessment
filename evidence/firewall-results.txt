@@ -1,0 +1,27 @@
+FIREWALL ASSESSMENT RESULTS
+
+1. UFW Status
+Command: sudo ufw status verbose
+Result: Command not found.
+
+Note: UFW was unavailable. This does not prove that no firewall exists.
+
+2. IPTables INPUT Chain
+Command: sudo iptables -S INPUT
+Result:
+-P INPUT ACCEPT
+
+3. INPUT Chain Details
+Command: sudo iptables -L INPUT -n -v --line-numbers
+Result:
+INPUT chain policy: ACCEPT
+No individual INPUT rules were listed.
+
+Security observation:
+The inspected INPUT chain had an ACCEPT default policy and no listed rules. This may allow inbound traffic unless other firewall or network controls restrict it.
+
+Recommendation:
+Review firewall configuration and implement restrictive inbound rules, allowing only required services.
+
+Scope note:
+These results do not establish that the system is exposed to the public internet.
